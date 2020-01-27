@@ -2,8 +2,8 @@
 
 ImageCapture::ImageCapture()
 {
-    camWidth = 320;  // try to grab at this size.
-    camHeight = 240;
+    camWidth = 1920;  // try to grab at this size.
+    camHeight = 1080;
 
     //get back a list of devices.
     vector<ofVideoDevice> devices = vidGrabber.listDevices();
@@ -21,7 +21,7 @@ ImageCapture::ImageCapture()
     vidGrabber.setDeviceID(0);
     vidGrabber.setDesiredFrameRate(60);
     vidGrabber.initGrabber(camWidth, camHeight);
-
+    image.allocate(camWidth, camHeight, OF_IMAGE_COLOR);
 
     ofSetVerticalSync(true);
 }
@@ -37,3 +37,15 @@ void ImageCapture::draw(){
     ofSetHexColor(0xffffff);
     vidGrabber.draw(20, 20);
 }
+
+void ImageCapture::saveImage(){
+    cout<<"save image"<<endl;
+    ofPixels & pixels = vidGrabber.getPixels();
+    image.setFromPixels(pixels);
+    image.save("capture.png");
+}
+
+
+
+
+

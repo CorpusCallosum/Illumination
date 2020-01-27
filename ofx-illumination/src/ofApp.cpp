@@ -15,9 +15,17 @@ void ofApp::draw(){
     ic.draw();
 }
 
+void ofApp::runOCR(){
+    //save video capture to file
+    cout<<"run ocr"<<endl;
+    ic.saveImage();
+}
+
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    if(key == ' '){
+        runOCR();
+    }
 }
 
 //--------------------------------------------------------------
