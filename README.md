@@ -1,17 +1,25 @@
 *Version 005 -* updated with support for Tesseract Open Source OCR Engine v3.02.02 with Leptonica
 
 
-Illumination
+# Illumination
 ============
 
 
-NON-INTERACTIVE VERSION for MADA INSTALLATION
+## NON-INTERACTIVE VERSION for MADA INSTALLATION
 
 run from console:
 java -d32 -jar -Xmx500M processing/processing-py.jar illumination_mada_.py
 
+-------------------
+## INTERACTIVE VERSION
 
-TO CALIBRATE:
+1. Launch RemoteCapture
+
+2. to run from console:
+java -d32 -jar -Xmx500M processing/processing-py.jar illumination.py
+
+
+## TO CALIBRATE:
 
 1. press "c" to enter calibration mode
 
@@ -21,17 +29,16 @@ TO CALIBRATE:
 
 4. press "c" again to exit calibration mode
 
-TO RUN:
+## TO RUN:
 
 1. press [SPACE] to run the OCR, light will begin to flicker
 
 2. wait 1-5 minutes
 
+## Notes
+tesseract command to generate hocr file (xml markup)
 
--------------------
-INTERACTIVE VERSION
+```tesseract file-name.jpg output-file-name -l eng -psm 1 hocr```
 
-1. Launch RemoteCapture
+tesseract manual: https://github.com/tesseract-ocr/tesseract/blob/master/doc/tesseract.1.asc
 
-2. to run from console:
-java -d32 -jar -Xmx500M processing/processing-py.jar illumination.py
