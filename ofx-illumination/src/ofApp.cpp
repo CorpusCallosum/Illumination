@@ -19,6 +19,9 @@ void ofApp::runOCR(){
     //save video capture to file
     cout<<"run ocr"<<endl;
     ic.saveImage();
+    //run tesseract on the saved image
+    //system("ls");
+    system("tesseract data/capture.png data/output -l eng -psm 1 hocr");
 }
 
 //--------------------------------------------------------------
