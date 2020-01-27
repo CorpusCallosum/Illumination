@@ -10,3 +10,5 @@ processing/.DS_Store
 *.tif
 
 *.html
+
+build-ofx-illumination-Desktop-Debug/
