@@ -13,6 +13,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     ic.draw();
+    display.draw();
 }
 
 void ofApp::runOCR(){
@@ -20,8 +21,13 @@ void ofApp::runOCR(){
     cout<<"run ocr"<<endl;
     ic.saveImage();
     //run tesseract on the saved image
-    //system("ls");
     system("tesseract data/capture.png data/output -l eng -psm 1 hocr");
+    //load the ocr data
+    ocrXml.load("output.hocr");
+    //display.dataXml = ocrXml;
+    display.updateData(ocrXml)
+   // data.load();
+   // display.dataXml = data.dataXml;
 }
 
 //--------------------------------------------------------------

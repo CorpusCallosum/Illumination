@@ -2,6 +2,9 @@
 
 #include "ofMain.h"
 #include "imagecapture.h"
+#include "data.h"
+#include "display.h"
+#include "ofxXmlSettings.h"
 
 class ofApp : public ofBaseApp{
 
@@ -24,5 +27,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
         ImageCapture ic;
-		
+        Data data;
+        DisplaySystem display;
+        ofxXmlSettings ocrXml;
 };
