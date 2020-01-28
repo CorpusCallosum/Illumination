@@ -42,8 +42,12 @@ void Data::load(){
                         //words
                         for(int w=0;w<dataXml.getNumTags("span");w++){
                           // cout<<"word "<<w<<endl;
-                           string word = dataXml.getValue("span","",w);
-                           cout<<word<<" ";
+                           string wordText = dataXml.getValue("span","",w);
+                           string boxData = dataXml.getAttribute("span","title","",w);
+                           ofRectangle rect = parseRect(boxData);
+                           //Word word = new Word(wordText, rect);
+                           wordsVector.push_back(Word(wordText, rect));
+                           cout<<wordText<<" ";
                         }
                         dataXml.popTag();
                     }
@@ -59,4 +63,15 @@ void Data::load(){
         dataXml.popTag();
     }
     cout<<endl<<"parsing complete"<<endl;
+}
+
+ofRectangle Data::parseRect(string d){
+    ofRectangle rect;
+    vector<string> splitString = ofSplitString( d, ";");
+    splitString = ofSplitString( d, " ");
+    rect.x = ofToInt(splitString[1]);
+    rect.y = ofToInt(splitString[2]);
+    rect.width = ofToInt(splitString[3]) - ofToInt(splitString[1]);
+    rect.width = ofToInt(splitString[4]) - ofToInt(splitString[2]);
+    return rect;
 }

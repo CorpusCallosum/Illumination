@@ -1,6 +1,7 @@
 #include "word.h"
 
-Word::Word()
+Word::Word(string t, ofRectangle r)
 {
-
+    text = t;
+    rect = r;
 }
