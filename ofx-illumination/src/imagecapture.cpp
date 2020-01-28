@@ -35,7 +35,7 @@ void ImageCapture::update(){
 //--------------------------------------------------------------
 void ImageCapture::draw(){
     ofSetHexColor(0xffffff);
-    vidGrabber.draw(20, 20);
+    vidGrabber.draw(20, 20, camWidth/2, camHeight/2);
 }
 
 void ImageCapture::saveImage(){
