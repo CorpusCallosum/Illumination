@@ -8,6 +8,7 @@ class Word
 {
 public:
     Word(string t, ofRectangle r);
+    void light();
 
     //vars
     string text;
