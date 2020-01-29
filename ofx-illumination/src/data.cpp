@@ -16,6 +16,8 @@ void Data::load(){
     //cout<<dataAsString<<endl;
     if(!dataAsString.empty())
     {
+        //clear out the words vector
+        wordsVector.clear();
         cout<<"data exists"<<endl;
         //draw boxes around words
         dataXml.pushTag("html");
@@ -44,6 +46,7 @@ void Data::load(){
                           // cout<<"word "<<w<<endl;
                            string wordText = dataXml.getValue("span","",w);
                            string boxData = dataXml.getAttribute("span","title","",w);
+                           cout<<" boxData: "<<boxData;
                            ofRectangle rect = parseRect(boxData);
                            //Word word = new Word(wordText, rect);
                            wordsVector.push_back(Word(wordText, rect));
@@ -72,6 +75,6 @@ ofRectangle Data::parseRect(string d){
     rect.x = ofToInt(splitString[1]);
     rect.y = ofToInt(splitString[2]);
     rect.width = ofToInt(splitString[3]) - ofToInt(splitString[1]);
-    rect.width = ofToInt(splitString[4]) - ofToInt(splitString[2]);
+    rect.height = ofToInt(splitString[4]) - ofToInt(splitString[2]);
     return rect;
 }

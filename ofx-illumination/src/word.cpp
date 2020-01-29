@@ -6,7 +6,8 @@ Word::Word(string t, ofRectangle r)
     rect = r;
 }
 
-Word::light(){
-    ofSetColor(100,100,100,.5);
-    ofRect(rect);
+void Word::light(){
+    ofSetColor(200,100,100,100);
+    ofDrawRectangle(rect);
+   // cout<<"light "<<text;
 }

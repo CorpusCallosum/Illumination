@@ -14,6 +14,7 @@ public:
     int camWidth;
     int camHeight;
     ofImage image;
+    float scaleX, scaleY;
 };
 
 #endif // IMAGECAPTURE_H

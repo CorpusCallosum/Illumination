@@ -7,6 +7,8 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    ic.scaleX = 1;
+    ic.scaleY = 1;
     ic.update();
 }
 
@@ -23,10 +25,8 @@ void ofApp::runOCR(){
     //run tesseract on the saved image
     system("tesseract data/capture.png data/output -l eng -psm hocr");
     //load the ocr data
-    //ocrXml.load("output.hocr");
-    //display.dataXml = ocrXml;
-   // display.updateData(ocrXml);
     data.load();
+    display.wordsVector = data.wordsVector;
    // display.dataXml = data.dataXml;
 }
 
