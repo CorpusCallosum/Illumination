@@ -45,12 +45,22 @@ void Data::load(){
                         for(int w=0;w<dataXml.getNumTags("span");w++){
                           // cout<<"word "<<w<<endl;
                            string wordText = dataXml.getValue("span","",w);
-                           string boxData = dataXml.getAttribute("span","title","",w);
-                           cout<<" boxData: "<<boxData;
-                           ofRectangle rect = parseRect(boxData);
-                           //Word word = new Word(wordText, rect);
-                           wordsVector.push_back(Word(wordText, rect));
-                           cout<<wordText<<" ";
+
+                           //strip string whitespace
+                           ofStringReplace(wordText," ","");
+
+                           //ignore words that are blank
+                           if(wordText !=""){
+                               string boxData = dataXml.getAttribute("span","title","",w);
+                               cout<<" boxData: "<<boxData;
+                               ofRectangle rect = parseRect(boxData);
+
+                               //also ignore anything that is the whole screen size...
+                               if(rect.width<1920){
+                                   wordsVector.push_back(Word(wordText, rect));
+                                   cout<<wordText<<" ";
+                               }
+                           }
                         }
                         dataXml.popTag();
                     }
@@ -60,7 +70,6 @@ void Data::load(){
             }
             dataXml.popTag();
         }
-
         dataXml.popTag();
         dataXml.popTag();
         dataXml.popTag();

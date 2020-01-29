@@ -9,7 +9,7 @@ class DisplaySystem
 {
 public:
     DisplaySystem();
-    void draw();
+    void draw(int x, int y, float scaleX, float scaleY);
     void updateData(ofxXmlSettings d);
 
     //vars

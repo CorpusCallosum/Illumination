@@ -8,13 +8,12 @@ class ImageCapture
 public:
     ImageCapture();
     void update();
-    void draw();
+    void draw(int x, int y, float scaleX, float scaleY);
     void saveImage();
     ofVideoGrabber vidGrabber;
     int camWidth;
     int camHeight;
     ofImage image;
-    float scaleX, scaleY;
 };
 
 #endif // IMAGECAPTURE_H
