@@ -5,6 +5,7 @@
 #include "data.h"
 #include "display.h"
 #include "ofxXmlSettings.h"
+#include "gui.h"
 
 class ofApp : public ofBaseApp{
 
@@ -13,6 +14,7 @@ class ofApp : public ofBaseApp{
 		void update();
 		void draw();
         void runOCR();
+        void snapShot();
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -30,4 +32,8 @@ class ofApp : public ofBaseApp{
         Data data;
         DisplaySystem display;
         ofxXmlSettings ocrXml;
+        GUI gui;
+
+        bool drawCamera, alt;
+        int camWidth, camHeight;
 };

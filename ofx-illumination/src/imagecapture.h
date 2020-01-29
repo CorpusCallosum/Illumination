@@ -7,6 +7,7 @@ class ImageCapture
 {
 public:
     ImageCapture();
+    void setup(int w, int h);
     void update();
     void draw(int x, int y, float scaleX, float scaleY);
     void saveImage();

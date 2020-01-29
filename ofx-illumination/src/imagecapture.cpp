@@ -2,8 +2,12 @@
 
 ImageCapture::ImageCapture()
 {
-    camWidth = 1920;  // try to grab at this size.
-    camHeight = 1080;
+
+}
+
+void ImageCapture::setup(int w, int h){
+    camWidth = w;  // try to grab at this size.
+    camHeight = h;
 
     //get back a list of devices.
     vector<ofVideoDevice> devices = vidGrabber.listDevices();

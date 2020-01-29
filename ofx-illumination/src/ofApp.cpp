@@ -2,23 +2,45 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
+    camWidth = 1920;
+    camHeight = 1080;
+    ic.setup(camWidth,camHeight);
+    display.setup(camWidth,camHeight);
+    drawCamera = true;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    ic.update();
+   // if(drawCamera)
+     //   ic.update();
+    display.update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    int x = 0;
-    int y = 0;
-    float scaleX = 1;
-    float scaleY = 1;
+    int x = gui.xPos;
+    int y = gui.yPos;
+    float scaleX = gui.xScale;
+    float scaleY = gui.yScale;
 
-    ic.draw(x,y,scaleX,scaleY);
+    //clear screen
+    ofBackground(0);
+
+    if(drawCamera){
+        if(alt){
+
+            ic.update();
+        }
+        else{
+            ic.draw(x,y,scaleX,scaleY);
+        }
+    }
+
     display.draw(x,y,scaleX,scaleY);
+
+    gui.draw();
+
+    alt = !alt;
 }
 
 void ofApp::runOCR(){
@@ -33,10 +55,28 @@ void ofApp::runOCR(){
    // display.dataXml = data.dataXml;
 }
 
+void ofApp::snapShot(){
+    ic.update();
+}
+
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if(key == ' '){
+   /* if(key == ' '){
         runOCR();
+    }*/
+    switch (key)
+    {
+        case ' ':
+            runOCR();
+            break;
+        case 'f':
+            ofToggleFullscreen();
+            break;
+        case 'c':
+            drawCamera = !drawCamera;
+        case 's':
+            snapShot();
+        break;
     }
 }
 
