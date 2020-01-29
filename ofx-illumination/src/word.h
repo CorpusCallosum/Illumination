@@ -13,6 +13,7 @@ public:
     //vars
     string text;
     ofRectangle rect;
+    float padding;
 };
 
 #endif // WORD_H

@@ -12,8 +12,11 @@ void DisplaySystem::setup(int w, int h){
 void DisplaySystem::update(){
     //draw to FBO
     fbo.begin();
+        ofBackground(0,10);
+        ofSetColor(lightColor);
         //draw all words
         for (Word & word : wordsVector) {
+            word.padding = padding;
             word.light();
         }
     fbo.end();
@@ -21,16 +24,13 @@ void DisplaySystem::update(){
 
 void DisplaySystem::draw(int x, int y, float scaleX, float scaleY){
 
-    //draw to FBO
-    //fbo.begin();
-        //draw all words
-        //for (Word & word : wordsVector) {
-      //      word.light();
-      //  }
-    //fbo.end();
-
     fbo.draw(x,y,scaleX*fbo.getWidth(),scaleY*fbo.getHeight());
 
+}
+
+void DisplaySystem::clear(){
+    //clear out words vector
+    wordsVector.clear();
 }
 
 void DisplaySystem::updateData(ofxXmlSettings d){

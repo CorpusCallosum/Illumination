@@ -9,10 +9,23 @@ class GUI
 public:
     GUI();
     void draw();
+    void shiftUp();
+    void shiftRight();
+    void shiftDown();
+    void shiftLeft();
+    void scaleDown();
+    void scaleUp();
+    void save();
 
-    ofxIntSlider xPos, yPos;
-    ofxFloatSlider xScale, yScale;
+    ofParameter<float> xPos, yPos, xScale, yScale, padding;
+
+   // ofxIntSlider xPos, yPos;
+   // ofxFloatSlider xScale, yScale;
     ofxPanel guiPanel;
+    float shiftAmt, scaleAmt;
+    ofParameter<ofColor> lightColor;
+
+
 };
 
 #endif // GUI_H

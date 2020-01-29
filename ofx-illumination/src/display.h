@@ -13,11 +13,13 @@ public:
     void update();
     void draw(int x, int y, float scaleX, float scaleY);
     void updateData(ofxXmlSettings d);
+    void clear();
 
     //vars
     ofxXmlSettings dataXml;
     vector<Word> wordsVector;
-    float xScale, yScale;
+    float xScale, yScale, padding;
+    ofColor lightColor;
 
 private:
     ofFbo fbo;

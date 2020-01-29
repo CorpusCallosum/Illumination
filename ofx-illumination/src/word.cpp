@@ -7,7 +7,11 @@ Word::Word(string t, ofRectangle r)
 }
 
 void Word::light(){
-    ofSetColor(200,100,100,100);
-    ofDrawRectangle(rect);
+    //ofSetColor(200,100,100,100);
+    ofDrawRectangle(rect.x-padding,
+                    rect.y-padding,
+                    rect.width+padding*2,
+                    rect.height+padding*2);
+    //ofDrawRectangle(rect);
    // cout<<"light "<<text;
 }

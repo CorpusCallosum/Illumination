@@ -13,6 +13,11 @@ void ofApp::setup(){
 void ofApp::update(){
    // if(drawCamera)
      //   ic.update();
+
+    //update app settings from GUI
+    display.lightColor = gui.lightColor;
+    display.padding = gui.padding;
+
     display.update();
 }
 
@@ -27,13 +32,12 @@ void ofApp::draw(){
     ofBackground(0);
 
     if(drawCamera){
-        if(alt){
-
+       // if(alt){
             ic.update();
-        }
-        else{
+      //  }
+       // else{
             ic.draw(x,y,scaleX,scaleY);
-        }
+      //  }
     }
 
     display.draw(x,y,scaleX,scaleY);
@@ -46,6 +50,7 @@ void ofApp::draw(){
 void ofApp::runOCR(){
     //save video capture to file
     cout<<"run ocr"<<endl;
+    ic.update();
     ic.saveImage();
     //run tesseract on the saved image
     system("tesseract data/capture.png data/output -l eng -psm hocr");
@@ -64,19 +69,40 @@ void ofApp::keyPressed(int key){
    /* if(key == ' '){
         runOCR();
     }*/
-    switch (key)
-    {
-        case ' ':
-            runOCR();
-            break;
-        case 'f':
-            ofToggleFullscreen();
-            break;
-        case 'c':
-            drawCamera = !drawCamera;
-        case 's':
-            snapShot();
+    switch (key){
+    case ' ':
+        runOCR();
         break;
+    case 'f':
+        ofToggleFullscreen();
+        break;
+    case 'c':
+        drawCamera = !drawCamera;
+    break;
+    case 's':
+        snapShot();
+    break;
+    case 'd':
+        display.clear();
+    break;
+    case OF_KEY_UP:
+        gui.shiftUp();
+    break;
+    case OF_KEY_RIGHT:
+        gui.shiftRight();
+    break;
+    case OF_KEY_DOWN:
+        gui.shiftDown();
+    break;
+    case OF_KEY_LEFT:
+        gui.shiftLeft();
+    break;
+    case ',':
+        gui.scaleDown();
+    break;
+    case '.':
+        gui.scaleUp();
+    break;
     }
 }
 
@@ -128,4 +154,10 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
+}
+
+//ON EXIT
+//--------------------------------------------------------------
+void ofApp::exit(){
+    gui.save();
 }
