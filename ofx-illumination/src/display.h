@@ -15,6 +15,9 @@ public:
     void updateData(ofxXmlSettings d);
     void clear();
     void lightWord(int index);
+    void pauseForWordAt(int i);
+
+    int getTimeForWordAt(int i);
 
     //vars
     ofxXmlSettings dataXml;

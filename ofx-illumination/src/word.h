@@ -10,6 +10,9 @@ public:
     Word(string t, ofRectangle r);
     void light();
 
+    //getters and setters
+    int length();
+
     //vars
     string text;
     ofRectangle rect;

@@ -15,3 +15,7 @@ void Word::light(){
     //ofDrawRectangle(rect);
    // cout<<"light "<<text;
 }
+
+int Word::length(){
+    return text.size();
+}

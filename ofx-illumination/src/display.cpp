@@ -24,9 +24,11 @@ void DisplaySystem::update(){
         fbo.end();
     }
    else if(mode == "RANDOM"){
+        int lastIndex = wordIndex;
         if(wordsVector.size()){
-            int wordIndex =  (int) round(ofRandom(wordsVector.size()-1));
+            wordIndex =  (int) round(ofRandom(wordsVector.size()-1));
             lightWord(wordIndex);
+            pauseForWordAt(lastIndex);
         }
     }
    else if(mode == "SEQUENCE"){
@@ -36,25 +38,9 @@ void DisplaySystem::update(){
                 wordIndex = 0;
 
             lightWord(wordIndex);
+            ofSleepMillis(100);
         }
     }
-   /* if(test){
-        if(wordsVector.size()){
-            int rand =  (int) round(ofRandom(wordsVector.size()));
-            lightWord(rand);
-        }
-    }
-    else{
-        fbo.begin();
-            ofBackground(0,10);
-            ofSetColor(lightColor);
-            //draw all words
-            for (Word & word : wordsVector) {
-                word.padding = padding;
-                word.light();
-            }
-        fbo.end();
-    }*/
 }
 
 void DisplaySystem::lightWord(int index){
@@ -66,6 +52,7 @@ void DisplaySystem::lightWord(int index){
         word.padding = padding;
         word.light();
     fbo.end();
+
 }
 
 void DisplaySystem::draw(int x, int y, float scaleX, float scaleY){
@@ -77,6 +64,15 @@ void DisplaySystem::draw(int x, int y, float scaleX, float scaleY){
 void DisplaySystem::clear(){
     //clear out words vector
     wordsVector.clear();
+}
+
+void DisplaySystem::pauseForWordAt(int i){
+    ofSleepMillis(getTimeForWordAt(i));
+}
+
+int DisplaySystem::getTimeForWordAt(int i){
+     Word & word = wordsVector[i];
+     return word.length()*100+200;
 }
 
 void DisplaySystem::updateData(ofxXmlSettings d){

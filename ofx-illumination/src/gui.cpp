@@ -14,7 +14,7 @@ GUI::GUI()
     guiPanel.add(yPos.set("Y", 0, 0, 1000));
     guiPanel.add(xScale.set("X Scale", 1, 0, 1));
     guiPanel.add(yScale.set("Y Scale", 1, 0, 1));
-    guiPanel.add(padding.set("Padding", 2, 0, 10));
+    guiPanel.add(padding.set("Padding", 2, 0, 20));
 
     //color
     guiPanel.add(lightColor.set("Color", ofColor(100, 100, 140), ofColor(0, 0), ofColor(255, 255)));
