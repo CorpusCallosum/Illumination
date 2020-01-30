@@ -8,6 +8,7 @@ class GUI
 {
 public:
     GUI();
+    void setup(int cw, int ch);
     void draw();
     void shiftUp();
     void shiftRight();
@@ -24,6 +25,7 @@ public:
     ofxPanel guiPanel;
     float shiftAmt, scaleAmt;
     ofParameter<ofColor> lightColor;
+    int camWidth, camHeight;
 
 
 };

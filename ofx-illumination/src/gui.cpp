@@ -19,13 +19,24 @@ GUI::GUI()
     //color
     guiPanel.add(lightColor.set("Color", ofColor(100, 100, 140), ofColor(0, 0), ofColor(255, 255)));
 
+    //setup listeners
+    //xScale.addListener(this, &GUI::onScaleX);
+
     //load settings
     guiPanel.loadFromFile("gui_settings.xml");
+}
+
+void GUI::setup(int cw, int ch){
+    camWidth = cw;
+    camHeight = ch;
 }
 
 void GUI::draw(){
     guiPanel.draw();
 }
+
+/*void GUI::onScaleX(float & newValue){
+}*/
 
 
 void GUI::shiftUp(){
@@ -47,11 +58,15 @@ void GUI::shiftLeft(){
 void GUI::scaleUp(){
     xScale += scaleAmt;
     yScale += scaleAmt;
+    xPos -= (scaleAmt*camWidth)/2;
+    yPos -= (scaleAmt*camHeight)/2;
 }
 
 void GUI::scaleDown(){
     xScale -= scaleAmt;
     yScale -= scaleAmt;
+    xPos += (scaleAmt*camWidth)/2;
+    yPos += (scaleAmt*camHeight)/2;
 }
 
 void GUI::save(){

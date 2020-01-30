@@ -14,12 +14,16 @@ public:
     void draw(int x, int y, float scaleX, float scaleY);
     void updateData(ofxXmlSettings d);
     void clear();
+    void lightWord(int index);
 
     //vars
     ofxXmlSettings dataXml;
     vector<Word> wordsVector;
     float xScale, yScale, padding;
     ofColor lightColor;
+    bool test;
+    string mode;
+    int wordIndex;
 
 private:
     ofFbo fbo;

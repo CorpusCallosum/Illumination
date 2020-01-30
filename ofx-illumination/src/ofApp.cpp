@@ -6,6 +6,7 @@ void ofApp::setup(){
     camHeight = 1080;
     ic.setup(camWidth,camHeight);
     display.setup(camWidth,camHeight);
+    gui.setup(camWidth,camHeight);
     drawCamera = true;
 }
 
@@ -78,12 +79,16 @@ void ofApp::keyPressed(int key){
         break;
     case 'c':
         drawCamera = !drawCamera;
+        display.mode = "CALIBRATE";
     break;
     case 's':
-        snapShot();
+        display.mode = "SEQUENCE";
     break;
     case 'd':
         display.clear();
+    break;
+    case 't':
+        display.mode = "RANDOM";
     break;
     case OF_KEY_UP:
         gui.shiftUp();

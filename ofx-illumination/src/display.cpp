@@ -2,23 +2,69 @@
 
 DisplaySystem::DisplaySystem()
 {
-
+    mode = "CALIBRATE";
 }
 
 void DisplaySystem::setup(int w, int h){
     fbo.allocate(w,h, GL_RGBA);
+    wordIndex = 0;
 }
 
 void DisplaySystem::update(){
     //draw to FBO
+   if(mode == "CALIBRATE"){
+        fbo.begin();
+            ofBackground(0,10);
+            ofSetColor(lightColor);
+            //draw all words
+            for (Word & word : wordsVector) {
+                word.padding = padding;
+                word.light();
+            }
+        fbo.end();
+    }
+   else if(mode == "RANDOM"){
+        if(wordsVector.size()){
+            int wordIndex =  (int) round(ofRandom(wordsVector.size()-1));
+            lightWord(wordIndex);
+        }
+    }
+   else if(mode == "SEQUENCE"){
+        if(wordsVector.size()){
+            wordIndex++;
+            if(wordIndex>=wordsVector.size()-1)
+                wordIndex = 0;
+
+            lightWord(wordIndex);
+        }
+    }
+   /* if(test){
+        if(wordsVector.size()){
+            int rand =  (int) round(ofRandom(wordsVector.size()));
+            lightWord(rand);
+        }
+    }
+    else{
+        fbo.begin();
+            ofBackground(0,10);
+            ofSetColor(lightColor);
+            //draw all words
+            for (Word & word : wordsVector) {
+                word.padding = padding;
+                word.light();
+            }
+        fbo.end();
+    }*/
+}
+
+void DisplaySystem::lightWord(int index){
+    //draw to FBO
     fbo.begin();
         ofBackground(0,10);
         ofSetColor(lightColor);
-        //draw all words
-        for (Word & word : wordsVector) {
-            word.padding = padding;
-            word.light();
-        }
+        Word & word = wordsVector[index];
+        word.padding = padding;
+        word.light();
     fbo.end();
 }
 

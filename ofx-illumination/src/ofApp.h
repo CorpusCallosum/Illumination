@@ -35,6 +35,6 @@ class ofApp : public ofBaseApp{
         ofxXmlSettings ocrXml;
         GUI gui;
 
-        bool drawCamera, alt;
+        bool drawCamera, alt, test;
         int camWidth, camHeight;
 };
