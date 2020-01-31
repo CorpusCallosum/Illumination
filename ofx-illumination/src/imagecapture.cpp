@@ -25,7 +25,7 @@ void ImageCapture::setup(int w, int h){
     vidGrabber.setDeviceID(0);
     vidGrabber.setDesiredFrameRate(60);
     vidGrabber.initGrabber(camWidth, camHeight);
-    image.allocate(camWidth, camHeight, OF_IMAGE_GRAYSCALE);
+    image.allocate(camWidth, camHeight, OF_IMAGE_COLOR);
 
     ofSetVerticalSync(true);
 }
@@ -38,11 +38,13 @@ void ImageCapture::update(){
 
 //--------------------------------------------------------------
 void ImageCapture::draw(int x,int y,float scaleX, float scaleY){
-    ofSetHexColor(0xffffff);
-   vidGrabber.draw(x, y, camWidth*scaleX, camHeight*scaleY);
-    //ofPixels & pixels = vidGrabber.getPixels();
-    //image.setFromPixels(pixels);
-    //image.draw(x, y, camWidth*scaleX, camHeight*scaleY);
+    //ofSetHexColor(0xffffff);
+    //vidGrabber.draw(x, y, camWidth*scaleX, camHeight*scaleY);
+    ofPixels & pixels = vidGrabber.getPixels();
+    image.setFromPixels(pixels);
+    image.setImageType(OF_IMAGE_GRAYSCALE);
+    ofSetColor(200);
+    image.draw(x, y, camWidth*scaleX, camHeight*scaleY);
 }
 
 void ImageCapture::saveImage(){
