@@ -43,7 +43,7 @@ void ImageCapture::draw(int x,int y,float scaleX, float scaleY){
     ofPixels & pixels = vidGrabber.getPixels();
     image.setFromPixels(pixels);
     image.setImageType(OF_IMAGE_GRAYSCALE);
-    ofSetColor(200);
+    ofSetColor(150);
     image.draw(x, y, camWidth*scaleX, camHeight*scaleY);
 }
 

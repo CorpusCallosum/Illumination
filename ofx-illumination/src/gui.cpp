@@ -69,6 +69,10 @@ void GUI::scaleDown(){
     yPos += (scaleAmt*camHeight)/2;
 }
 
+void GUI::rotate(float dir){
+    rotation += dir*.1;
+}
+
 void GUI::save(){
     //save current XML state
     guiPanel.saveToFile("gui_settings.xml");

@@ -113,6 +113,12 @@ void ofApp::keyPressed(int key){
     case '.':
         gui.scaleUp();
     break;
+    case ']':
+        gui.rotate(+1);
+    break;
+    case '[':
+        gui.rotate(-1);
+    break;
     }
 }
 

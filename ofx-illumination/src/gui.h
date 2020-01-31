@@ -16,9 +16,10 @@ public:
     void shiftLeft();
     void scaleDown();
     void scaleUp();
+    void rotate(float dir);
     void save();
 
-    ofParameter<float> xPos, yPos, xScale, yScale, padding;
+    ofParameter<float> xPos, yPos, xScale, yScale, rotation, padding;
 
    // ofxIntSlider xPos, yPos;
    // ofxFloatSlider xScale, yScale;
