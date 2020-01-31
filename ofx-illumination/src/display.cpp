@@ -46,7 +46,9 @@ void DisplaySystem::update(){
 void DisplaySystem::lightWord(int index){
     //draw to FBO
     fbo.begin();
-        ofBackground(0,10);
+        //ofBackground(0,10);
+        ofSetColor(0,10);
+        ofDrawRectangle(0,0,ofGetWindowWidth(), ofGetWindowHeight());
         ofSetColor(lightColor);
         Word & word = wordsVector[index];
         word.padding = padding;

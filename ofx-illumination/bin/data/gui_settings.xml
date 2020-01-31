@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <GUI>
-	<X>249.6</X>
-	<Y>242.201</Y>
-	<X_Scale>0.474999</X_Scale>
-	<Y_Scale>0.477</Y_Scale>
+	<X>397.239</X>
+	<Y>341.96</Y>
+	<X_Scale>0.708996</X_Scale>
+	<Y_Scale>0.710997</Y_Scale>
 	<Color>204, 197, 191, 206</Color>
-	<Padding>10</Padding>
+	<Padding>11.3</Padding>
 </GUI>
