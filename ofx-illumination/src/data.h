@@ -15,6 +15,12 @@ public:
     //vars
     ofxXmlSettings dataXml;
     vector<Word> wordsVector;
+    string text;
+
+
+private:
+    void addWord(string wordText, ofRectangle rect);
+    void removeChar(string c);
 
 };
 

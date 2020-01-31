@@ -79,8 +79,8 @@ void DisplaySystem::draw(int x, int y, float scaleX, float scaleY){
            }
 
           //light next word after elapsed time
-          cout<<"elapsed time: "<<ofGetElapsedTimeMillis()<<endl;
-          cout<<"wait time: "<<waitTime<<endl;
+         // cout<<"elapsed time: "<<ofGetElapsedTimeMillis()<<endl;
+         // cout<<"wait time: "<<waitTime<<endl;
 
               // lightWord(wordIndex);
            }

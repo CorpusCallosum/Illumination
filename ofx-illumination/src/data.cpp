@@ -7,6 +7,7 @@ Data::Data()
 
 void Data::load(){
     cout<<"data.load"<<endl;
+    text = "";
     //load OCR data
     dataXml.load("output.hocr");
 
@@ -57,7 +58,8 @@ void Data::load(){
 
                                //also ignore anything that is the whole screen size...
                                if(rect.width<1920){
-                                   wordsVector.push_back(Word(wordText, rect));
+                                   addWord(wordText, rect);
+                                   //wordsVector.push_back(Word(wordText, rect));
                                    cout<<wordText<<" ";
                                }
                            }
@@ -74,7 +76,26 @@ void Data::load(){
         dataXml.popTag();
         dataXml.popTag();
     }
+
+    //cleanup - remove weird characters
+    removeChar("(");
+    removeChar("\"");
+    removeChar("'");
+    removeChar("-");
+    removeChar(";");
+    removeChar("}");
+
     cout<<endl<<"parsing complete"<<endl;
+}
+
+void Data::removeChar(string c){
+    ofStringReplace(text,c,"");
+}
+
+void Data::addWord(string wordText, ofRectangle rect){
+    wordsVector.push_back(Word(wordText, rect));
+    text += " "+wordText;
+   // cout<<text<<endl;
 }
 
 ofRectangle Data::parseRect(string d){

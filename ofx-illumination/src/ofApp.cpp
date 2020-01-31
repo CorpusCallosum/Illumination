@@ -33,12 +33,8 @@ void ofApp::draw(){
     ofBackground(0);
 
     if(drawCamera){
-       // if(alt){
-            ic.update();
-      //  }
-       // else{
-            ic.draw(x,y,scaleX,scaleY);
-      //  }
+       ic.update();
+       ic.draw(x,y,scaleX,scaleY);
     }
 
     display.draw(x,y,scaleX,scaleY);
@@ -58,7 +54,12 @@ void ofApp::runOCR(){
     //load the ocr data
     data.load();
     display.wordsVector = data.wordsVector;
-   // display.dataXml = data.dataXml;
+
+    //generate poem
+    system("ls");
+    cout<<data.text<<endl;
+    string cmd = "python illumination-ml.py '"+data.text+"'";
+    system(cmd.c_str());
 }
 
 void ofApp::snapShot(){
