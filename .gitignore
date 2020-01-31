@@ -7,3 +7,5 @@ processing/.DS_Store
 *.png
 *.PNG
 build-ofx-illumination-Desktop-Debug/
+
+ofx-illumination/bin/ofx-illumination_debug

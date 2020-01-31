@@ -80,15 +80,19 @@ void ofApp::keyPressed(int key){
     case 'c':
         drawCamera = !drawCamera;
         display.mode = "CALIBRATE";
+        if(drawCamera)
+            display.reset();
     break;
     case 's':
         display.mode = "SEQUENCE";
+        display.clear();
     break;
     case 'd':
         display.clear();
     break;
     case 't':
         display.mode = "RANDOM";
+        display.clear();
     break;
     case OF_KEY_UP:
         gui.shiftUp();

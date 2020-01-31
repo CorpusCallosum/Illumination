@@ -14,6 +14,8 @@ public:
     void draw(int x, int y, float scaleX, float scaleY);
     void updateData(ofxXmlSettings d);
     void clear();
+    void calibrate();
+    void reset();
     void lightWord(int index);
     void pauseForWordAt(int i);
 
@@ -22,9 +24,9 @@ public:
     //vars
     ofxXmlSettings dataXml;
     vector<Word> wordsVector;
-    float xScale, yScale, padding;
+    float xScale, yScale, padding, waitTime;
     ofColor lightColor;
-    bool test;
+    bool test, clearOnce;
     string mode;
     int wordIndex;
 
