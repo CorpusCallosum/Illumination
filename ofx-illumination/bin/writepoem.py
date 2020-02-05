@@ -2,7 +2,10 @@
   illumination.py
   
   by Jack Kalish and Yonatan Ben-Simhon
-  NYU ITP 2011
+  Originally developed at NYU ITP 2011
+
+  This is just the stand-alone poetry generator script.
+  It takes as input a string of text, and generates a string of word indeces representing the generated poem.
 """
 
 import sys, commands, subprocess, math, re, os, shutil, glob, random, time
@@ -23,8 +26,6 @@ class Illuminate(object):
 	def makeNewPoem(self):
 		print "thinking of a new poem...",
 		#make a new poem between 3 and 14 lines long
-		self.lineCnt = 0
-		self.wordCnt = 0
 		numLines = round(random.random()*11)+3
 		print "it will be ",
 		print numLines,
@@ -32,8 +33,22 @@ class Illuminate(object):
 		print "***THE START***"
 		lines =  self.generator.generateFromText(int(numLines))
 		self.lines = lines
-		self.line = lines[0]
 		print lines
+
+		#save poem as string of indeces
+		poem = ""
+		for line in lines:
+			for i in line:
+				poem += str(i) + " "
+			poem += "NEWLINE "
+
+		print poem
+
+		#write poem to file
+		text_file = open("data/poem.txt", "w")
+		n = text_file.write(poem)
+		text_file.close()
+
 		
 	def setWords(self, words):
 		self.generator.setWords(words)
