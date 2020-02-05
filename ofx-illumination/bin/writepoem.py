@@ -30,19 +30,22 @@ class Illuminate(object):
 		print "it will be ",
 		print numLines,
 		print "lines long"
-		print "***THE START***"
+		print "***START***"
 		lines =  self.generator.generateFromText(int(numLines))
 		self.lines = lines
-		print lines
+		#print lines
 
 		#save poem as string of indeces
 		poem = ""
 		for line in lines:
 			for i in line:
 				poem += str(i) + " "
-			poem += "NEWLINE "
+				print self.words[i],
+			poem += "-1 " #-1 signifies a new line in the poem
+			print 
 
-		print poem
+		print "***END***"
+		#print poem
 
 		#write poem to file
 		text_file = open("data/poem.txt", "w")
@@ -51,6 +54,7 @@ class Illuminate(object):
 
 		
 	def setWords(self, words):
+		self.words = words;
 		self.generator.setWords(words)
 		
 	def stop(self):

@@ -10,11 +10,13 @@ class Data
 public:
     Data();
     void load();
+    vector<int> loadPoem();
     ofRectangle parseRect(string d);
 
     //vars
     ofxXmlSettings dataXml;
     vector<Word> wordsVector;
+    vector<int> poemDataVector;
     string text;
 
 

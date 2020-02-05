@@ -108,3 +108,18 @@ ofRectangle Data::parseRect(string d){
     rect.height = ofToInt(splitString[4]) - ofToInt(splitString[2]);
     return rect;
 }
+
+vector<int> Data::loadPoem(){
+    //load poem.txt file
+    vector < string > p = ofSplitString(ofBufferFromFile("poem.txt").getText(), " ");
+
+    //convert string vector to int vector
+    for (int i=0; i< p.size(); i++)
+    {
+     int num = atoi(p.at(i).c_str());
+     poemDataVector.push_back(num);
+    }
+
+    return poemDataVector;
+}
+

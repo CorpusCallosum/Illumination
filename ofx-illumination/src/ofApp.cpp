@@ -58,8 +58,11 @@ void ofApp::runOCR(){
     //generate poem
     system("ls");
     cout<<data.text<<endl;
-    string cmd = "python illumination-ml.py '"+data.text+"'";
+    string cmd = "python writepoem.py '"+data.text+"'";
     system(cmd.c_str());
+
+    //load the poem text file
+    data.loadPoem();
 }
 
 void ofApp::snapShot(){
