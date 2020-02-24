@@ -62,7 +62,9 @@ void ofApp::runOCR(){
     system(cmd.c_str());
 
     //load the poem text file
-    data.loadPoem();
+    vector<int> poem = data.loadPoem();
+    drawCamera = false;
+    display.readPoem(poem);
 }
 
 void ofApp::snapShot(){
@@ -83,9 +85,9 @@ void ofApp::keyPressed(int key){
         break;
     case 'c':
         drawCamera = !drawCamera;
-        display.mode = "CALIBRATE";
-        if(drawCamera)
-            display.reset();
+        //display.mode = "CALIBRATE";
+        //if(drawCamera)
+          //  display.reset();
     break;
     case 's':
         display.mode = "SEQUENCE";

@@ -9,22 +9,16 @@ void DisplaySystem::setup(int w, int h){
     fbo.allocate(w,h, GL_RGBA);
     wordIndex = 0;
     waitTime = 0;
+    poemCompleted = false;
 }
 
 void DisplaySystem::update(){
-    /*if(clearOnce){
-        fbo.clear();
-        clearOnce = false;
-    }*/
-
-    //draw to FBO
-
-    //fbo.begin();
-       // ofSetColor(0,2);
-       // ofDrawRectangle(0,0,ofGetWindowWidth(), ofGetWindowHeight());
-    //fbo.end();
-
-
+    if(fade){
+        fbo.begin();
+            ofSetColor(0,10);
+            ofDrawRectangle(0,0,ofGetWindowWidth(), ofGetWindowHeight());
+        fbo.end();
+    }
 }
 
 void DisplaySystem::lightWord(int index){
@@ -40,7 +34,6 @@ void DisplaySystem::lightWord(int index){
             word.light();
         }
     fbo.end();
-
 }
 
 void DisplaySystem::draw(int x, int y, float scaleX, float scaleY){
@@ -77,28 +70,41 @@ void DisplaySystem::draw(int x, int y, float scaleX, float scaleY){
                   // ofSleepMillis(100);
                }
            }
+          else if(mode == "POEM"){
+              if(wordsVector.size()){
+                  if(wordIndex>=_poem.size()-1){
+                    //poem completed
+                      poemCompleted = true;
+                      return;
+                  }
+                  int i = _poem[wordIndex];
+                  if(i == -1){
+                      //consider as newline
+                      waitTime = 1000;
+                      fade = true;
+                  }
+                  else{
+                      //light word
+                      fade = false;
+                      lightWord(i);
+                      pauseForWordAt(i);
+                  }
+
+                  wordIndex++;
+              }
+          }
 
           //light next word after elapsed time
          // cout<<"elapsed time: "<<ofGetElapsedTimeMillis()<<endl;
          // cout<<"wait time: "<<waitTime<<endl;
 
-              // lightWord(wordIndex);
            }
 
     fbo.draw(x,y,scaleX*fbo.getWidth(),scaleY*fbo.getHeight());
 
-
-
 }
 
 void DisplaySystem::clear(){
-    //fbo.clear();
-    //clear out words vector
-    //wordsVector.clear();
-    //fbo.clear();
-    /*if(mode == "CALIBRATE"){
-        mode = "OFF";
-    }*/
     fbo.begin();
     ofSetColor(0);
     ofDrawRectangle(0,0,ofGetWindowWidth(), ofGetWindowHeight());
@@ -115,15 +121,16 @@ void DisplaySystem::calibrate(){
 }
 
 void DisplaySystem::pauseForWordAt(int i){
-    //ofSleepMillis(getTimeForWordAt(i));
     waitTime = ofGetElapsedTimeMillis()+getTimeForWordAt(i);
 }
 
 int DisplaySystem::getTimeForWordAt(int i){
      Word & word = wordsVector[i];
-     return word.length()*100+200;
+     return word.length()*200+200;
 }
 
-void DisplaySystem::updateData(ofxXmlSettings d){
-
+void DisplaySystem::readPoem(vector<int> poem){
+    _poem = poem;
+    mode = "POEM";
+    wordIndex = 0;
 }
