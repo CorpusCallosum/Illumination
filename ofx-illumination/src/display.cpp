@@ -80,8 +80,9 @@ void DisplaySystem::draw(int x, int y, float scaleX, float scaleY){
                   int i = _poem[wordIndex];
                   if(i == -1){
                       //consider as newline
-                      waitTime = 1000;
                       fade = true;
+                      //waitTime = 3000;
+                      pauseFor(1000);
                   }
                   else{
                       //light word
@@ -120,13 +121,19 @@ void DisplaySystem::calibrate(){
     clearOnce = false;
 }
 
+void DisplaySystem::pauseFor(int t){
+    waitTime = ofGetElapsedTimeMillis()+t;
+}
+
 void DisplaySystem::pauseForWordAt(int i){
     waitTime = ofGetElapsedTimeMillis()+getTimeForWordAt(i);
 }
 
 int DisplaySystem::getTimeForWordAt(int i){
      Word & word = wordsVector[i];
-     return word.length()*200+200;
+     //this should be an inverse exponential curve based on word length
+     //return log2(word.length())*250+200;
+     return sqrt(word.length())*300;
 }
 
 void DisplaySystem::readPoem(vector<int> poem){

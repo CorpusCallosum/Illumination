@@ -32,16 +32,19 @@ void ofApp::draw(){
     //clear screen
     ofBackground(0);
 
+    //apply rotation
+    ofPushMatrix();
+    ofRotateDeg(gui.rotation);
+
     if(drawCamera){
        ic.update();
        ic.draw(x,y,scaleX,scaleY);
     }
 
     display.draw(x,y,scaleX,scaleY);
+    ofPopMatrix();
 
     gui.draw();
-
-    alt = !alt;
 }
 
 void ofApp::runOCR(){

@@ -4,6 +4,7 @@ GUI::GUI()
 {
     shiftAmt = .2;
     scaleAmt = .001;
+    rotation = 0;
 
     int w = 500;
     guiPanel.setup("GUI","gui_settings.xml", ofGetWindowWidth()-w-10, 10);
@@ -14,6 +15,7 @@ GUI::GUI()
     guiPanel.add(yPos.set("Y", 0, 0, 1000));
     guiPanel.add(xScale.set("X Scale", 1, 0, 1));
     guiPanel.add(yScale.set("Y Scale", 1, 0, 1));
+    guiPanel.add(rotation.set("Rotation", 0, -10, 10));
     guiPanel.add(padding.set("Padding", 2, 0, 20));
 
     //color

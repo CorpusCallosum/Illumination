@@ -17,6 +17,7 @@ public:
     void reset();
     void lightWord(int index);
     void pauseForWordAt(int i);
+    void pauseFor(int t);
     int getTimeForWordAt(int i);
     void readPoem(vector<int> poem);
 
