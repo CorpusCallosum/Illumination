@@ -10,9 +10,9 @@
  const int OPEN     = 1;   // clip is open, in transit (fsr low, switch low)
  const int EMPTY    = 2;   // clip is closed, no paper in (fsr high, switch high)
  const int READY    = 3;   // clip is closed, paper in place (fsr high, switch low)
- const int UNKNOWN  = 4;   // initial state, also error state
+ const int UNSURE   = 4;   // initial state, also error state
  
- int state = UNKNOWN;
+ int state = UNSURE;
  
  boolean debug = false;
  
@@ -27,15 +27,15 @@
  }
 
  void loop() {
-   int newState = UNKNOWN;
+   int newState = UNSURE;
    
    // measure inputs
    fsrValue =  analogRead(fsrPin);     // read the FSR value
 
    if(fsrValue > fsrThresh)
-    fsrState = LOW; //closed
+    fsrState = HIGH; //closed
    else
-    fsrState = HIGH; //open
+    fsrState = LOW; //open
    
    switchValue = digitalRead(switchPin); // read the switch value
    
@@ -54,7 +54,7 @@
      Serial.println(switchValue, DEC);
    }
    // calculate change. report if change detected
-   if (newState != state && newState != UNKNOWN){
+   if (newState != state && newState != UNSURE){
      if (debug){
          Serial.print("change detected, old = ");
          Serial.print(state, DEC);
@@ -85,21 +85,20 @@
  }
  
  int calcState(int fsr, int sw){
-  
-   int newState = UNKNOWN;
-   if (fsr == LOW && sw == LOW){
+   int newState = UNSURE;
+   if (fsr == HIGH && sw == HIGH){
      newState = EMPTY;
      if (debug){ 
        Serial.println("EMPTY");
      }
    }
-   else if (fsr == LOW && sw == HIGH){
+   else if (fsr == HIGH && sw == LOW){
      newState = READY;
      if (debug){ 
        Serial.println("READY");
      }
    }
-   else if (fsr == HIGH && sw == HIGH){
+   else if (fsr == LOW && sw == LOW){
      newState = OPEN;
      if (debug){ 
        Serial.println("OPEN");
@@ -107,7 +106,7 @@
    }
    else {
     //error 
-    newState = UNKNOWN;
+    newState = UNSURE;
     if (debug){ 
       Serial.println("ERROR");
     }
