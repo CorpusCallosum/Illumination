@@ -1,5 +1,6 @@
  const int fsrPin = 9;      // pressure btn (white wires)
  const int switchPin = 1;   //contact switch (black wires)
+ const int led = 13;        //debug LED pin    
  
  int fsrValue = 0;      // value read from the fsr
  int switchValue = 0;   // value read from the switch
@@ -20,7 +21,8 @@
    pinMode(switchPin, INPUT);
    pinMode(fsrPin, INPUT);              // set pin to input
    digitalWrite(switchPin, HIGH);       // turn on pullup resistors
-  // digitalWrite(fsrPin, HIGH);          // turn on pullup resistors
+  // digitalWrite(fsrPin, HIGH);        // turn on pullup resistors
+    pinMode(led, OUTPUT);
 
    // initialize serial communications at 9600 bps:
    Serial.begin(9600); 
@@ -65,6 +67,7 @@
      delay(50);
      // check again to make sure reading wasn't a fluke
      if (newState == calcState(fsrState,switchValue)){
+      /*
        state = newState;
        if (debug){
          Serial.print("Change reported, state = ");
@@ -72,8 +75,11 @@
          Serial.println("");
          delay(2000);
        }
-       //report change
+       
+       //report change - output to serial
        Serial.print(state, DEC);
+       */
+       reportChange(newState);
      }
    }
    delay(20); 
@@ -81,7 +87,27 @@
    if (debug){ 
      delay(1000);
    }
+ }
+
+ void reportChange(int newState){
+   state = newState;
+   if (debug){
+     Serial.print("Change reported, state = ");
+     Serial.println(state, DEC);
+     Serial.println("");
+     delay(2000);
+   }
    
+   //report change - output to serial
+   Serial.print(state, DEC);
+
+   //blink for feedback
+   for(int i=0;i<state;i++){
+    digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
+    delay(50);               // wait for a second
+    digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
+    delay(100);               // wait for a second
+   }
  }
  
  int calcState(int fsr, int sw){
@@ -111,5 +137,6 @@
       Serial.println("ERROR");
     }
    }
+   
    return newState;
  }
