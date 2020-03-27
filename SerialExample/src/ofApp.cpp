@@ -30,39 +30,39 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	
-	if (bSendSerialMessage){
-		
-		// (1) write the letter "a" to serial:
-		serial.writeByte('a');
-		
-		// (2) read
-		// now we try to read 3 bytes
-		// since we might not get them all the time 3 - but sometimes 0, 6, or something else,
-		// we will try to read three bytes, as much as we can
-		// otherwise, we may have a "lag" if we don't read fast enough
-		// or just read three every time. now, we will be sure to 
-		// read as much as we can in groups of three...
-		
-		nTimesRead = 0;
-		nBytesRead = 0;
-		int nRead  = 0;  // a temp variable to keep count per read
-		
-		unsigned char bytesReturned[3];
-		
-		memset(bytesReadString, 0, 4);
-		memset(bytesReturned, 0, 3);
-		
-		while( (nRead = serial.readBytes( bytesReturned, 3)) > 0){
-			nTimesRead++;	
-			nBytesRead = nRead;
-		};
-		
-		memcpy(bytesReadString, bytesReturned, 3);
-		
-		bSendSerialMessage = false;
-		readTime = ofGetElapsedTimef();
-	}
+
+    if (bSendSerialMessage){
+
+        // (1) write the letter "a" to serial:
+        //serial.writeByte('a');
+
+        // (2) read
+        // now we try to read 3 bytes
+        // since we might not get them all the time 3 - but sometimes 0, 6, or something else,
+        // we will try to read three bytes, as much as we can
+        // otherwise, we may have a "lag" if we don't read fast enough
+        // or just read three every time. now, we will be sure to
+        // read as much as we can in groups of three...
+
+        nTimesRead = 0;
+        nBytesRead = 0;
+        int nRead  = 0;  // a temp variable to keep count per read
+
+        unsigned char bytesReturned[3];
+
+        memset(bytesReadString, 0, 4);
+        memset(bytesReturned, 0, 3);
+
+        while( (nRead = serial.readBytes( bytesReturned, 3)) > 0){
+            nTimesRead++;
+            nBytesRead = nRead;
+        };
+
+        memcpy(bytesReadString, bytesReturned, 3);
+
+        bSendSerialMessage = false;
+        readTime = ofGetElapsedTimef();
+    }
 }
 
 //--------------------------------------------------------------
