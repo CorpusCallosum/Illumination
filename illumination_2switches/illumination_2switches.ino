@@ -1,5 +1,5 @@
- const int fsrPin = 9;      // pressure btn (white wires)
- const int switchPin = 1;   //contact switch (black wires)
+ const int fsrPin = 3;      //btn (white wires)
+ const int switchPin = 2;   //contact switch (black wires)
  const int led = 13;        //debug LED pin    
  
  int fsrValue = 0;      // value read from the fsr
@@ -32,13 +32,14 @@
    int newState = UNSURE;
    
    // measure inputs
-   fsrValue =  analogRead(fsrPin);     // read the FSR value
+   /*fsrValue =  analogRead(fsrPin);     // read the FSR value
 
    if(fsrValue > fsrThresh)
     fsrState = HIGH; //closed
    else
-    fsrState = LOW; //open
-   
+    fsrState = LOW; //open*/
+
+   fsrState = digitalRead(fsrPin); // read the switch value
    switchValue = digitalRead(switchPin); // read the switch value
    
    // calculate current state
