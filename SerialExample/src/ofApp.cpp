@@ -20,7 +20,7 @@ void ofApp::setup(){
     //serial.setup(0, baud); //open the first device
 	//serial.setup("COM4", baud); // windows example
 	//serial.setup("/dev/tty.usbserial-A4001JEC", baud); // mac osx example
-    serial.setup("/dev/ttyUSB0", baud); //linux example
+    serial.setup("/dev/ttyACM0", baud); //linux example
 	
 	nTimesRead = 0;
 	nBytesRead = 0;

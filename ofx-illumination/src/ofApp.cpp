@@ -8,6 +8,10 @@ void ofApp::setup(){
     display.setup(camWidth,camHeight);
     gui.setup(camWidth,camHeight);
     drawCamera = true;
+
+    //setup serial to read data from arduino microcomputer
+    int baud = 9600;
+    serial.setup("/dev/ttyACM0", baud); //linux example
 }
 
 //--------------------------------------------------------------
@@ -15,11 +19,40 @@ void ofApp::update(){
    // if(drawCamera)
      //   ic.update();
 
+    //read data from serial
+    serial.readBytes(bytesReturned, 2);
+    //int newByte = serial.readByte();
+    //char nb = newByte;
+
+    if(strcmp(bytesReturned, bytesRead) != 0){
+        //they are different, issue a state change
+        memcpy(bytesRead, bytesReturned, 2);
+        cout<<"bytesRead: "<< bytesRead << endl;
+        updateState(bytesRead);
+    }
+
     //update app settings from GUI
     display.lightColor = gui.lightColor;
     display.padding = gui.padding;
 
     display.update();
+}
+
+void ofApp::updateState(char* state){
+   // cout<<state<<endl;
+  //  int ss = *state;
+   // cout<<ss<<endl;
+    switch (*state){
+        case 49:
+            cout<<"state: open"<<endl;
+            break;
+        case 50:
+            cout<<"state: closed/empty"<<endl;
+            break;
+        case 51:
+            cout<<"state: ready"<<endl;
+            break;
+    }
 }
 
 //--------------------------------------------------------------

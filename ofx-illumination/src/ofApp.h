@@ -15,6 +15,7 @@ class ofApp : public ofBaseApp{
 		void draw();
         void runOCR();
         void snapShot();
+        void updateState(char *state);
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -37,4 +38,10 @@ class ofApp : public ofBaseApp{
 
         bool drawCamera, alt, test;
         int camWidth, camHeight;
+
+        ofSerial	serial;
+        char		bytesReturned[2];				// data from serial, we will be trying to read 3
+        char		bytesRead[2];
+        int         lastReadByte;
+
 };
