@@ -2,7 +2,15 @@
 
 
 # Illumination
-============
+==============
+
+## TO DO
+
+7/2/2020
+- process german corpus to generate parts of speech to generate the training model
+- update markovgenerator-de to detect German parts of speech in source text
+- update tesseract to add support for German, and detect language of source text
+- install sensors into new clipboard
 
 
 ## NON-INTERACTIVE VERSION for MADA INSTALLATION
@@ -11,12 +19,9 @@ run from console:
 java -d32 -jar -Xmx500M processing/processing-py.jar illumination_mada_.py
 
 -------------------
-## INTERACTIVE VERSION
+## INTERACTIVE VERSION SETUP INSTRUCTIONS
 
-1. Launch RemoteCapture
-
-2. to run from console:
-java -d32 -jar -Xmx500M processing/processing-py.jar illumination.py
+1. 
 
 
 ## TO CALIBRATE:
