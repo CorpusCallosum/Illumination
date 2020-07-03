@@ -12,6 +12,7 @@ public:
     void setup(int w, int h);
     void update();
     void draw(int x, int y, float scaleX, float scaleY);
+    void drawAfter();
     void clear();
     void calibrate();
     void reset();
@@ -20,6 +21,7 @@ public:
     void pauseFor(int t);
     int getTimeForWordAt(int i);
     void readPoem(vector<int> poem);
+    void drawGrid();
 
     //vars
     ofxXmlSettings dataXml;

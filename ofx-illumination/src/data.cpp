@@ -2,18 +2,20 @@
 
 Data::Data()
 {
-
+    //load the settings XML data file
+    settingsXML.load("settings.xml");
 }
 
-void Data::load(){
+void Data::loadOutputOCR(){
     cout<<"data.load"<<endl;
     text = "";
+
     //load OCR data
-    dataXml.load("output.hocr");
+    hocr.load("output.hocr");
 
     //parse data and generate vector of Word objects with text and rect data for each word
     string dataAsString;
-    dataXml.copyXmlToString(dataAsString);
+    hocr.copyXmlToString(dataAsString);
     //cout<<dataAsString<<endl;
     if(!dataAsString.empty())
     {
@@ -21,38 +23,38 @@ void Data::load(){
         wordsVector.clear();
         cout<<"data exists"<<endl;
         //draw boxes around words
-        dataXml.pushTag("html");
+        hocr.pushTag("html");
         cout<<"pushtag html"<<endl;
-        dataXml.pushTag("body");
+        hocr.pushTag("body");
         cout<<"pushtag body"<<endl;
 
         //PAGEs
-        for(int pg=0;pg<dataXml.getNumTags("div");pg++){
+        for(int pg=0;pg<hocr.getNumTags("div");pg++){
         //    cout<<"page "<<pg;
-            dataXml.pushTag("div", pg);
+            hocr.pushTag("div", pg);
             //careas
-            for(int c=0;c<dataXml.getNumTags("div");c++){
+            for(int c=0;c<hocr.getNumTags("div");c++){
           //       cout<<", carea "<<c;
-                dataXml.pushTag("div",c);
+                hocr.pushTag("div",c);
                 //paragraphs
-                for(int p=0;p<dataXml.getNumTags("p");p++){
+                for(int p=0;p<hocr.getNumTags("p");p++){
             //        cout<<", paragraph "<<p;
-                    dataXml.pushTag("p",p);
+                    hocr.pushTag("p",p);
                     //lines
-                    for(int l=0;l<dataXml.getNumTags("span");l++){
+                    for(int l=0;l<hocr.getNumTags("span");l++){
               //          cout<<", line "<<l;
-                        dataXml.pushTag("span",l);
+                        hocr.pushTag("span",l);
                         //words
-                        for(int w=0;w<dataXml.getNumTags("span");w++){
+                        for(int w=0;w<hocr.getNumTags("span");w++){
                           // cout<<"word "<<w<<endl;
-                           string wordText = dataXml.getValue("span","",w);
+                           string wordText = hocr.getValue("span","",w);
 
                            //strip string whitespace
                            ofStringReplace(wordText," ","");
 
                            //ignore words that are blank
                            if(wordText !=""){
-                               string boxData = dataXml.getAttribute("span","title","",w);
+                               string boxData = hocr.getAttribute("span","title","",w);
                                cout<<" boxData: "<<boxData;
                                ofRectangle rect = parseRect(boxData);
 
@@ -64,17 +66,17 @@ void Data::load(){
                                }
                            }
                         }
-                        dataXml.popTag();
+                        hocr.popTag();
                     }
-                    dataXml.popTag();
+                    hocr.popTag();
                 }
-                dataXml.popTag();
+                hocr.popTag();
             }
-            dataXml.popTag();
+            hocr.popTag();
         }
-        dataXml.popTag();
-        dataXml.popTag();
-        dataXml.popTag();
+        hocr.popTag();
+        hocr.popTag();
+        hocr.popTag();
     }
 
     //cleanup - remove weird characters

@@ -4,7 +4,7 @@
 	<Y>193.58</Y>
 	<X_Scale>0.601</X_Scale>
 	<Y_Scale>0.607</Y_Scale>
-	<Color>204, 197, 191, 206</Color>
+	<Color>255, 246, 238, 210</Color>
 	<Padding>10.3</Padding>
-	<Rotation>-0.8</Rotation>
+	<Rotation>0.5</Rotation>
 </GUI>

@@ -11,24 +11,22 @@ void ofApp::setup(){
 
     //setup serial to read data from arduino microcomputer
     int baud = 9600;
-    serial.setup("/dev/ttyACM0", baud); //linux example
+    serialSuccess = serial.setup("/dev/ttyACM0", baud); //linux example
+    cout<<"serialSuccess: "<<serialSuccess<<endl;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-   // if(drawCamera)
-     //   ic.update();
+    if(serialSuccess){
+        //read data from serial
+        serial.readBytes(bytesReturned, 2);
 
-    //read data from serial
-    serial.readBytes(bytesReturned, 2);
-    //int newByte = serial.readByte();
-    //char nb = newByte;
-
-    if(strcmp(bytesReturned, bytesRead) != 0){
-        //they are different, issue a state change
-        memcpy(bytesRead, bytesReturned, 2);
-        cout<<"bytesRead: "<< bytesRead << endl;
-        updateState(bytesRead);
+        if(strcmp(bytesReturned, bytesRead) != 0){
+            //they are different, issue a state change
+            memcpy(bytesRead, bytesReturned, 2);
+            cout<<"bytesRead: "<< bytesRead << endl;
+            updateState(bytesRead);
+        }
     }
 
     //update app settings from GUI
@@ -77,6 +75,8 @@ void ofApp::draw(){
     display.draw(x,y,scaleX,scaleY);
     ofPopMatrix();
 
+    display.drawAfter();
+
     gui.draw();
 }
 
@@ -85,10 +85,13 @@ void ofApp::runOCR(){
     cout<<"run ocr"<<endl;
     ic.update();
     ic.saveImage();
+
     //run tesseract on the saved image
-    system("tesseract data/capture.png data/output -l eng -psm hocr");
+    //TODO: this should happen asynch
+    system("tesseract data/capture.png data/output -l eng+deu -psm hocr"); //english and german
+
     //load the ocr data
-    data.load();
+    data.loadOutputOCR();
     display.wordsVector = data.wordsVector;
 
     //generate poem

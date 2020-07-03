@@ -9,12 +9,12 @@ class Data
 {
 public:
     Data();
-    void load();
+    void loadOutputOCR();
     vector<int> loadPoem();
     ofRectangle parseRect(string d);
 
     //vars
-    ofxXmlSettings dataXml;
+    ofxXmlSettings hocr, settingsXML;
     vector<Word> wordsVector;
     vector<int> poemDataVector;
     string text;
@@ -23,7 +23,6 @@ public:
 private:
     void addWord(string wordText, ofRectangle rect);
     void removeChar(string c);
-
 };
 
 #endif // DATA_H

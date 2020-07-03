@@ -49,6 +49,9 @@ void ImageCapture::draw(int x,int y,float scaleX, float scaleY){
 
 void ImageCapture::saveImage(){
     cout<<"save image"<<endl;
+
+    //TODO - rotate image before saving
+
     ofPixels & pixels = vidGrabber.getPixels();
     image.setFromPixels(pixels);
     image.save("capture.png");

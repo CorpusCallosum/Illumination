@@ -50,7 +50,6 @@ void DisplaySystem::draw(int x, int y, float scaleX, float scaleY){
                        word.light();
                    }
                fbo.end();
-
            }
           else if(mode == "RANDOM"){
                int lastIndex = wordIndex;
@@ -102,7 +101,31 @@ void DisplaySystem::draw(int x, int y, float scaleX, float scaleY){
            }
 
     fbo.draw(x,y,scaleX*fbo.getWidth(),scaleY*fbo.getHeight());
+}
 
+//called after matrix popped
+void DisplaySystem::drawAfter(){
+    if(mode == "CALIBRATE"){
+         drawGrid();
+     }
+}
+
+void DisplaySystem::drawGrid(){
+    float size = 100;
+    ofSetLineWidth(1);
+    ofSetColor(100,150);
+    int w = ofGetWidth();
+    int h = ofGetHeight();
+
+    for(float i=0; i<=size; i++){
+        float y = (i/size)*h;
+        //horizontal lines
+        ofDrawLine(0,y,w,y);
+        //vertical lines
+        float x = (i/size)*w;
+        ofDrawLine(x,0,x,h);
+    }
+    ofSetColor(255);
 }
 
 void DisplaySystem::clear(){
