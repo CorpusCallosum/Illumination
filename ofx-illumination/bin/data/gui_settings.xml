@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <GUI>
-	<X>455.922</X>
-	<Y>193.58</Y>
+	<X>451.522</X>
+	<Y>196.38</Y>
 	<X_Scale>0.601</X_Scale>
 	<Y_Scale>0.607</Y_Scale>
 	<Color>255, 246, 238, 210</Color>
 	<Padding>10.3</Padding>
-	<Rotation>0.5</Rotation>
+	<Rotation>-0.0200002</Rotation>
 </GUI>

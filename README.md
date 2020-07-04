@@ -12,6 +12,11 @@
 - update tesseract to add support for German, and detect language of source text
 - install sensors into new clipboard
 
+## Setting up on new computer
+- install tesseract
+- install additional language training data for tessearct, if other than english
+  -  on linux: sudo apt-get install tesseract-ocr-[lang] https://askubuntu.com/questions/793634/how-do-i-install-a-new-language-pack-for-tesseract-on-16-04
+
 
 ## NON-INTERACTIVE VERSION for MADA INSTALLATION
 

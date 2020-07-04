@@ -65,7 +65,11 @@ void ofApp::draw(){
 
     //apply rotation
     ofPushMatrix();
+
+    //offset to center
+    ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
     ofRotateDeg(gui.rotation);
+    ofTranslate(-ofGetWidth()/2, -ofGetHeight()/2);
 
     if(drawCamera){
        ic.update();
