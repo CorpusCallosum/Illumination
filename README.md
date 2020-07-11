@@ -1,17 +1,35 @@
 *Version 005 -* updated with support for Tesseract Open Source OCR Engine v3.02.02 with Leptonica
 
 
-Illumination
-============
+# Illumination
+==============
+
+## TO DO
+
+7/2/2020
+- process german corpus to generate parts of speech to generate the training model
+- update markovgenerator-de to detect German parts of speech in source text
+- update tesseract to add support for German, and detect language of source text
+- install sensors into new clipboard
+
+## Setting up on new computer
+- install tesseract
+- install additional language training data for tessearct, if other than english
+  -  on linux: sudo apt-get install tesseract-ocr-[lang] https://askubuntu.com/questions/793634/how-do-i-install-a-new-language-pack-for-tesseract-on-16-04
 
 
-NON-INTERACTIVE VERSION for MADA INSTALLATION
+## NON-INTERACTIVE VERSION for MADA INSTALLATION
 
 run from console:
 java -d32 -jar -Xmx500M processing/processing-py.jar illumination_mada_.py
 
+-------------------
+## INTERACTIVE VERSION SETUP INSTRUCTIONS
 
-TO CALIBRATE:
+1. 
+
+
+## TO CALIBRATE:
 
 1. press "c" to enter calibration mode
 
@@ -21,17 +39,16 @@ TO CALIBRATE:
 
 4. press "c" again to exit calibration mode
 
-TO RUN:
+## TO RUN:
 
 1. press [SPACE] to run the OCR, light will begin to flicker
 
 2. wait 1-5 minutes
 
+## Notes
+tesseract command to generate hocr file (xml markup)
 
--------------------
-INTERACTIVE VERSION
+```tesseract file-name.jpg output-file-name -l eng -psm 1 hocr```
 
-1. Launch RemoteCapture
+tesseract manual: https://github.com/tesseract-ocr/tesseract/blob/master/doc/tesseract.1.asc
 
-2. to run from console:
-java -d32 -jar -Xmx500M processing/processing-py.jar illumination.py

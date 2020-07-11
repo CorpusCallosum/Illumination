@@ -1,12 +1,11 @@
-
 .DS_Store
-
 processing/.DS_Store
-
 processing/.DS_Store
-
 *.JPG
-
 *.tif
-
 *.html
+*.png
+*.PNG
+build-ofx-illumination-Desktop-Debug/
+
+ofx-illumination/bin/ofx-illumination_debug
