@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# Set these paths appropriately
+
+BIN="/home/illuminiation/of_v0.11.0_linux64gcc6_release/apps/Illumination/pos-tagging/bin"
+CMD="/home/illuminiation/of_v0.11.0_linux64gcc6_release/apps/Illumination/pos-tagging/cmd"
+LIB="/home/illuminiation/of_v0.11.0_linux64gcc6_release/apps/Illumination/pos-tagging/lib"
+
+OPTIONS="-token -lemma -sgml"
+
+TOKENIZER=${CMD}/utf8-tokenize.perl
+MWL=${CMD}/mwl-lookup.perl
+TAGGER=${BIN}/tree-tagger
+ABBR_LIST=${LIB}/latin-abbreviations
+PARFILE=${LIB}/latin.par
+MWLFILE=${LIB}/latin-mwls
+
+$TOKENIZER -a $ABBR_LIST $* |
+# recognition of MWLs
+$MWL -f $MWLFILE |
+# tagging
+$TAGGER $OPTIONS $PARFILE
+

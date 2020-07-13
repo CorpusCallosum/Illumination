@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Set these paths appropriately
+
+BIN="/home/illuminiation/of_v0.11.0_linux64gcc6_release/apps/Illumination/pos-tagging/bin"
+CMD="/home/illuminiation/of_v0.11.0_linux64gcc6_release/apps/Illumination/pos-tagging/cmd"
+LIB="/home/illuminiation/of_v0.11.0_linux64gcc6_release/apps/Illumination/pos-tagging/lib"
+
+OPTIONS="-token -lemma -sgml"
+
+TAGGER=${BIN}/tree-tagger
+TOKENIZER=${CMD}/tokenize-korean.pl
+PARFILE=${LIB}/korean.par
+
+$TOKENIZER $* |
+$TAGGER $OPTIONS $PARFILE |
+$CMD/add-korean-sentence-markers.pl |
+$CMD/reformat-korean-tagger-output.pl
