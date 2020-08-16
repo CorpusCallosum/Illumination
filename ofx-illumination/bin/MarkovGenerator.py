@@ -25,8 +25,12 @@ class MarkovGenerator(object):
     for line in open("data/listVerbs.txt"):
     	self.verbs.add(line.strip())
     lines = []
-    for line in open("data/PoemLinesNew.txt"):
-    	lines.append(line)
+
+    # load in the training data
+    #English
+    for line in open("data/PoemLinesNew.txt"): 
+      lines.append(line)
+
     self.createNgrams(lines)
     self.localbeginings = list()
     self.localNgrams = dict()
@@ -247,8 +251,6 @@ class MarkovGenerator(object):
               output.append(curpos)
               prev=self.article[curpos]
       return output    			
-    				
-
     
   # generate a text from the information in self.ngrams
   def generateFromTextOld(self): #done
