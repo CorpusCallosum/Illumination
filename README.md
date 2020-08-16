@@ -7,6 +7,7 @@
 ## TO DO
 8/15/2020
 - implement language detection
+  - install and implement langdetect: https://pypi.org/project/langdetect/
 - use training data without tagged POS, and ignore POS, to first see if this works at all, before looking into POS tagging in German
 
 7/2/2020
