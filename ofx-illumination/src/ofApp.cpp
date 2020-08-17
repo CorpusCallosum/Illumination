@@ -8,6 +8,7 @@ void ofApp::setup(){
     display.setup(camWidth,camHeight);
     gui.setup(camWidth,camHeight);
     drawCamera = true;
+    calibrate(true);
 
     //setup serial to read data from arduino microcomputer
     int baud = 9600;
@@ -27,6 +28,10 @@ void ofApp::update(){
             cout<<"bytesRead: "<< bytesRead << endl;
             updateState(bytesRead);
         }
+    }
+
+    if(display.poemCompleted){
+        generateNewPoem();
     }
 
     //update app settings from GUI
@@ -98,9 +103,13 @@ void ofApp::runOCR(){
     data.loadOutputOCR();
     display.wordsVector = data.wordsVector;
 
+    generateNewPoem();
+}
+
+void ofApp::generateNewPoem(){
     //generate poem
-    system("ls");
-    cout<<data.text<<endl;
+    //system("ls");
+    //cout<<data.text<<endl;
     string cmd = "python writepoem.py '"+data.text+"'";
     system(cmd.c_str());
 
@@ -114,24 +123,39 @@ void ofApp::snapShot(){
     ic.update();
 }
 
+void ofApp::calibrate(bool c){
+    isCalibrating = c;
+    drawCamera = c;
+
+    if(c){
+        display.mode = "CALIBRATE";
+        gui.show();
+        ofShowCursor();
+    }
+    else{
+        display.mode = "READY";
+        gui.hide();
+        ofHideCursor();
+    }
+}
+
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-   /* if(key == ' '){
-        runOCR();
-    }*/
+
     switch (key){
     case ' ':
         runOCR();
         break;
+    case 'c':
+       calibrate(!isCalibrating);
+    break;
     case 'f':
         ofToggleFullscreen();
         break;
-    case 'c':
-        drawCamera = !drawCamera;
-        //display.mode = "CALIBRATE";
-        //if(drawCamera)
-          //  display.reset();
-    break;
+    case 'g':
+        display.showGrid = !display.showGrid;
+        break;
+
     case 's':
         display.mode = "SEQUENCE";
         display.clear();

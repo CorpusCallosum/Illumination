@@ -16,6 +16,8 @@ class ofApp : public ofBaseApp{
         void runOCR();
         void snapShot();
         void updateState(char *state);
+        void generateNewPoem();
+        void calibrate(bool c);
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -36,7 +38,7 @@ class ofApp : public ofBaseApp{
         ofxXmlSettings ocrXml;
         GUI gui;
 
-        bool drawCamera, alt, test, serialSuccess;
+        bool drawCamera, alt, test, serialSuccess, isCalibrating;
         int camWidth, camHeight, mouseX, mouseY;
 
         ofSerial	serial;

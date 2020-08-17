@@ -10,6 +10,7 @@ void DisplaySystem::setup(int w, int h){
     wordIndex = 0;
     waitTime = 0;
     poemCompleted = false;
+    showGrid = false;
 }
 
 void DisplaySystem::update(){
@@ -19,6 +20,7 @@ void DisplaySystem::update(){
             ofDrawRectangle(0,0,ofGetWindowWidth(), ofGetWindowHeight());
         fbo.end();
     }
+
 }
 
 void DisplaySystem::lightWord(int index){
@@ -80,7 +82,6 @@ void DisplaySystem::draw(int x, int y, float scaleX, float scaleY){
                   if(i == -1){
                       //consider as newline
                       fade = true;
-                      //waitTime = 3000;
                       pauseFor(1000);
                   }
                   else{
@@ -160,6 +161,7 @@ int DisplaySystem::getTimeForWordAt(int i){
 }
 
 void DisplaySystem::readPoem(vector<int> poem){
+    poemCompleted = false;
     _poem = poem;
     mode = "POEM";
     wordIndex = 0;

@@ -28,7 +28,7 @@ public:
     vector<Word> wordsVector;
     float xScale, yScale, padding, waitTime;
     ofColor lightColor;
-    bool test, clearOnce, poemCompleted, fade;
+    bool test, clearOnce, poemCompleted, fade, showGrid;
     string mode;
     int wordIndex;
 

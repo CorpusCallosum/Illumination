@@ -5,6 +5,7 @@ GUI::GUI()
     shiftAmt = .2;
     scaleAmt = .001;
     rotation = 0;
+    isRendered = true;
 
     int w = 500;
     guiPanel.setup("GUI","gui_settings.xml", ofGetWindowWidth()-w-10, 10);
@@ -34,7 +35,16 @@ void GUI::setup(int cw, int ch){
 }
 
 void GUI::draw(){
-    guiPanel.draw();
+    if(isRendered)
+        guiPanel.draw();
+}
+
+void GUI::show(){
+    isRendered = true;
+}
+
+void GUI::hide(){
+    isRendered = false;
 }
 
 void GUI::startMouseMove(int x, int y){

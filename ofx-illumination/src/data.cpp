@@ -115,6 +115,7 @@ vector<int> Data::loadPoem(){
     //load poem.txt file
     vector < string > p = ofSplitString(ofBufferFromFile("poem.txt").getText(), " ");
 
+    poemDataVector.clear();
     //convert string vector to int vector
     for (int i=0; i< p.size(); i++)
     {

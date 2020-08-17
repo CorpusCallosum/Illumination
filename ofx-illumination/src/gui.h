@@ -20,6 +20,8 @@ public:
     void scaleUp();
     void rotate(float dir);
     void save();
+    void show();
+    void hide();
 
     ofParameter<float> xPos, yPos, xScale, yScale, rotation, padding;
 
@@ -29,7 +31,7 @@ public:
     float shiftAmt, scaleAmt;
     ofParameter<ofColor> lightColor;
     int camWidth, camHeight, mouseX, mouseY, lastXPos, lastYPos;
-
+    bool isRendered;
 
 };
 
