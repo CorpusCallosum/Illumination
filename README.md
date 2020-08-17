@@ -5,15 +5,14 @@
 ==============
 
 ## TO DO
-8/15/2020
-- implement language detection
-  - install and implement langdetect: https://pypi.org/project/langdetect/
-- use training data without tagged POS, and ignore POS, to first see if this works at all, before looking into POS tagging in German
+8/16/2020
+- unwarp the camera image?
+- feather the image edges
+- auto-calbiration
 
 7/2/2020
 - process german corpus to generate parts of speech to generate the training model
 - update markovgenerator-de to detect German parts of speech in source text
-- update tesseract to add support for German, and detect language of source text
 - install sensors into new clipboard
 
 ## Setting up on new computer
