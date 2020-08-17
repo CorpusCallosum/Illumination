@@ -113,7 +113,7 @@ void DisplaySystem::drawAfter(){
 void DisplaySystem::drawGrid(){
     float size = 100;
     ofSetLineWidth(1);
-    ofSetColor(100,150);
+    ofSetColor(100,50);
     int w = ofGetWidth();
     int h = ofGetHeight();
 

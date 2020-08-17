@@ -182,12 +182,13 @@ void ofApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-
+    //move image with mouse
+    gui.mouseMove(x,y);
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    gui.startMouseMove(x,y);
 }
 
 //--------------------------------------------------------------

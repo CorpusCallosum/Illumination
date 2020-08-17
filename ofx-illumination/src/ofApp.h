@@ -37,7 +37,7 @@ class ofApp : public ofBaseApp{
         GUI gui;
 
         bool drawCamera, alt, test, serialSuccess;
-        int camWidth, camHeight;
+        int camWidth, camHeight, mouseX, mouseY;
 
         ofSerial	serial;
         char		bytesReturned[2];				// data from serial, we will be trying to read 3

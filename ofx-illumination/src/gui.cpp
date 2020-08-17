@@ -37,9 +37,17 @@ void GUI::draw(){
     guiPanel.draw();
 }
 
-/*void GUI::onScaleX(float & newValue){
-}*/
+void GUI::startMouseMove(int x, int y){
+   mouseX = x;
+   mouseY = y;
+   lastXPos = xPos;
+   lastYPos = yPos;
+}
 
+void GUI::mouseMove(int x, int y){
+    xPos = lastXPos + x - mouseX;
+    yPos = lastYPos + y - mouseY;
+}
 
 void GUI::shiftUp(){
     yPos -= shiftAmt;

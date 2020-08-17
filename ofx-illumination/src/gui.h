@@ -10,6 +10,8 @@ public:
     GUI();
     void setup(int cw, int ch);
     void draw();
+    void startMouseMove(int x, int y);
+    void mouseMove(int x, int y);
     void shiftUp();
     void shiftRight();
     void shiftDown();
@@ -26,7 +28,7 @@ public:
     ofxPanel guiPanel;
     float shiftAmt, scaleAmt;
     ofParameter<ofColor> lightColor;
-    int camWidth, camHeight;
+    int camWidth, camHeight, mouseX, mouseY, lastXPos, lastYPos;
 
 
 };
