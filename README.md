@@ -1,6 +1,3 @@
-*Version 005 -* updated with support for Tesseract Open Source OCR Engine v3.02.02 with Leptonica
-
-
 # Illumination
 ==============
 
