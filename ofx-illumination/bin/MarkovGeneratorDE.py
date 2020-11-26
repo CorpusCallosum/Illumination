@@ -23,7 +23,8 @@ class MarkovGeneratorDE(object):
 
     # load in the training data
     #German
-    for line in open("data/german-corpus.txt"): 
+    for line in open("data/corpus_DE.txt"): 
+    #for line in open("data/german-corpus.txt"): 
       lines.append(line)
 
     self.createNgrams(lines)
@@ -104,9 +105,16 @@ class MarkovGeneratorDE(object):
   						print "word: " + word + ", tag " + tag
 
   def createNgrams(self, text): #done
+  	lineCount = 0
+  	#print "self.n: "
+  	#print self.n
   	for line in self.tokenizePoems(text):
+  		#print "training line #{}".format(lineCount)
+  		#print "line length: {}".format(len(line))
+  		lineCount += 1
   		if len(line) >= self.n:
   			beginning = tuple(line[:self.n])
+    		#print beginning
     		self.beginnings.append(beginning)
     		for i in range(len(line) - self.n):
       			gram = tuple(line[i:i+self.n])

@@ -21,6 +21,7 @@ from langdetect import detect
 
 class Illuminate(object):
 	def setup(self):
+		self.start_time = time.time()
 		#clear the terminal
 		self.reset()
 
@@ -36,14 +37,21 @@ class Illuminate(object):
 		print "it will be ",
 		print numLines,
 		print "lines long"
-		print "***START**************************************"
 
 		lines = self.generator.generateFromText(int(numLines))
+
+		#calculate elapsed time
+		elapsed_time = time.time() - self.start_time
+		print "it took "+str(round(elapsed_time, 2))+" seconds to compose"
+		#print elapsed_time,
+		#print "seconds to write"
 		self.lines = lines
 
+		print "***START**************************************"
 		#save poem as string of indeces
 		poem = ""
 		for line in lines:
+			print "> ",
 			for i in line:
 				poem += str(i) + " "
 				print self.words[i],
@@ -92,8 +100,8 @@ illuminate = Illuminate()
 
 illuminate.setup();
 
-print 'Number of arguments:', len(sys.argv), 'arguments.'
-print 'Argument List:', str(sys.argv)
+#print 'Number of arguments:', len(sys.argv), 'arguments.'
+#print 'Argument List:', str(sys.argv)
 
 #split by space to make words array
 words = sys.argv[1]
